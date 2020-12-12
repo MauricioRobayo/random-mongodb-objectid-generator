@@ -1,159 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Random MongoDB ObjectId Generator</title>
-  <style>
-    body, main {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    body {
-      padding: 0;
-      margin: 0;
-      background-color:  hsl(145, 83%, 36%);
-      font-family: sans-serif;
-      color: white;
-      height: 100vh;
-      text-align: center;
-    }
-    h1 {
-      font-size: clamp(1rem, 3vw, 2rem);
-      font-weight: normal;
-      margin: 0;
-    }
-    button {
-      width: 3rem;
-      height: 3rem;
-      background: transparent;
-      border: none;
-      margin: 0 2rem;
-    }
-    button:hover {
-      cursor: pointer;
-    }
-    svg {
-      height: 100%;
-      width: 100%;
-    }
-    #refresh svg {
-      fill: white;
-    }
-    #copy svg {
-      stroke: white;
-    }
-    #random-mongodb-id-wrapper {
-      display: grid;
-      justify-items: center;
-      align-items: center;
-      grid-template-areas: "overlap";
-    }
-    #copy-label {
-      z-index: 1;
-      grid-area: overlap;
-      background-color:black;
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.5rem;
-      display: none;
-      animation: appear .75s, disappear .75s 1s forwards;
-    }
-    #random-mongodb-id {
-      grid-area: overlap;
-      font-size: 4rem;
-      font-size: clamp(1rem, 3vw, 2rem);
-      font-family: monospace;
-      background-color: white;
-      border-radius: 0.5rem;
-      padding: 0.25rem 0.5rem;
-      margin: 2rem 0;
-      border: none;
-      color:#116149;
-      text-align: center;
-    }
-    #random-mongodb-id:focus {
-      outline: none;
-    }
-    @keyframes appear {
-      0% {
-        opacity: 0;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random MongoDB ObjectId Generator</title>
+    <style>
+      body,
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
-      100% {
-        opacity: 1;
+      body {
+        padding: 0;
+        margin: 0;
+        background-color: hsl(145, 83%, 36%);
+        font-family: sans-serif;
+        color: white;
+        height: 100vh;
+        text-align: center;
       }
-    }
-    @keyframes disappear {
-      0% {
-        opacity: 1;
+      h1 {
+        font-size: clamp(1rem, 3vw, 2rem);
+        font-weight: normal;
+        margin: 0;
       }
-      100% {
-        opacity: 0;
+      button {
+        width: 3rem;
+        height: 3rem;
+        background: transparent;
+        border: none;
+        margin: 0 2rem;
       }
-    }
-  </style>
-</head>
-<body>
-  <h1>Random MongoDB ObjectId</h1>
-  <main>
-    <div id="random-mongodb-id-wrapper">
-      <div id="copy-label">Copied!</div>
-      <input aria-label="Random MongoDB ObjectId Generator" placeholder="Random MongoDB ObjectId Generator" id="random-mongodb-id" size="24" readonly/>
-    </div>
-    <div>
-      <button id="copy" autofocus>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-        </svg>
-      </button>
-      <button id="refresh">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 56.32">
-          <g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path d="M63.22,22.34a2.57,2.57,0,0,0-3.62.06l-3.39,3.52a28.13,28.13,0,1,0-7.94,21.95,2.56,2.56,0,0,0-3.66-3.58,23,23,0,1,1,6.47-18.45l-3.19-3.19a2.56,2.56,0,1,0-3.62,3.62L52,34a2.56,2.56,0,0,0,1.81.75h0a2.56,2.56,0,0,0,1.82-.79L63.28,26A2.57,2.57,0,0,0,63.22,22.34Z"/></g></g>
-        </svg>
-      </button>
-    </div>
-  </main>
-  <script>
-    const randomObjectIdWrapper = document.querySelector('#random-mongodb-id-wrapper')
-    const mongoObjectIdInput = document.querySelector('#random-mongodb-id')
-    const refreshButton = document.querySelector('#refresh')
-    const copyButton = document.querySelector('#copy')
-    const copyLabel = document.querySelector('#copy-label')
+      button:hover {
+        cursor: pointer;
+      }
+      svg {
+        height: 100%;
+        width: 100%;
+      }
+      #refresh svg {
+        fill: white;
+      }
+      #copy svg {
+        stroke: white;
+      }
+      #random-mongodb-id-wrapper {
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        grid-template-areas: "overlap";
+      }
+      #copy-label {
+        z-index: 1;
+        grid-area: overlap;
+        background-color: black;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.5rem;
+        display: none;
+        animation: appear 0.75s, disappear 0.75s 1s forwards;
+      }
+      #random-mongodb-id {
+        grid-area: overlap;
+        font-size: 4rem;
+        font-size: clamp(1rem, 3vw, 2rem);
+        font-family: monospace;
+        background-color: white;
+        border-radius: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        margin: 2rem 0;
+        border: none;
+        color: #116149;
+        text-align: center;
+      }
+      #random-mongodb-id:focus {
+        outline: none;
+      }
+      @keyframes appear {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes disappear {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Random MongoDB ObjectId</h1>
+    <main>
+      <div id="random-mongodb-id-wrapper">
+        <div id="copy-label">Copied!</div>
+        <input
+          aria-label="Random MongoDB ObjectId Generator"
+          placeholder="Random MongoDB ObjectId Generator"
+          id="random-mongodb-id"
+          size="24"
+          readonly
+        />
+      </div>
+      <div>
+        <button id="copy" autofocus>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-copy"
+          >
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path
+              d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+            ></path>
+          </svg>
+        </button>
+        <button id="refresh">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 56.32">
+            <g id="Layer_2" data-name="Layer 2">
+              <g id="Layer_1-2" data-name="Layer 1">
+                <path
+                  d="M63.22,22.34a2.57,2.57,0,0,0-3.62.06l-3.39,3.52a28.13,28.13,0,1,0-7.94,21.95,2.56,2.56,0,0,0-3.66-3.58,23,23,0,1,1,6.47-18.45l-3.19-3.19a2.56,2.56,0,1,0-3.62,3.62L52,34a2.56,2.56,0,0,0,1.81.75h0a2.56,2.56,0,0,0,1.82-.79L63.28,26A2.57,2.57,0,0,0,63.22,22.34Z"
+                />
+              </g>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </main>
+    <script>
+      const randomObjectIdWrapper = document.querySelector(
+        "#random-mongodb-id-wrapper"
+      );
+      const mongoObjectIdInput = document.querySelector("#random-mongodb-id");
+      const refreshButton = document.querySelector("#refresh");
+      const copyButton = document.querySelector("#copy");
+      const copyLabel = document.querySelector("#copy-label");
 
-    // https://gist.github.com/solenoid/1372386
-    const mongoObjectId = () => {
-      const timestamp = Math.round(new Date().getTime() / 1000).toString(16);
-      const randomHexString = 'x'.repeat(16).replace(/[x]/g, () => Math.floor(Math.random() * 16).toString(16)).toLowerCase();
-      return `${timestamp}${randomHexString}`
-    };
-    const selectMongoObjectId = () => {
-      mongoObjectIdInput.focus();
-      mongoObjectIdInput.setSelectionRange(0, mongoObjectIdInput.value.length)
-    }
-    const copyToClipboard = () => {
-      console.log(mongoObjectIdInput.value);
-      navigator.clipboard.writeText(mongoObjectIdInput.value)
-      copyLabel.style.display = 'block'
-      setTimeout(() => {
-        copyLabel.style.display = 'none'
-      }, 1.75 * 1000)
-    }
-    const refreshMongoObjectId = () => mongoObjectIdInput.value = mongoObjectId()
+      // https://gist.github.com/solenoid/1372386
+      const mongoObjectId = () => {
+        const timestamp = Math.round(new Date().getTime() / 1000).toString(16);
+        const randomHexString = "x"
+          .repeat(16)
+          .replace(/[x]/g, () => Math.floor(Math.random() * 16).toString(16))
+          .toLowerCase();
+        return `${timestamp}${randomHexString}`;
+      };
+      const selectMongoObjectId = () => {
+        mongoObjectIdInput.focus();
+        mongoObjectIdInput.setSelectionRange(
+          0,
+          mongoObjectIdInput.value.length
+        );
+      };
+      const copyToClipboard = () => {
+        console.log(mongoObjectIdInput.value);
+        navigator.clipboard.writeText(mongoObjectIdInput.value);
+        copyLabel.style.display = "block";
+        setTimeout(() => {
+          copyLabel.style.display = "none";
+        }, 1.75 * 1000);
+      };
+      const refreshMongoObjectId = () =>
+        (mongoObjectIdInput.value = mongoObjectId());
 
-    mongoObjectIdInput.addEventListener('click', function() {
-      selectMongoObjectId();
-      copyToClipboard();
-    });
-    refreshButton.addEventListener('click', () => {
+      mongoObjectIdInput.addEventListener("click", function () {
+        selectMongoObjectId();
+        copyToClipboard();
+      });
+      refreshButton.addEventListener("click", () => {
+        refreshMongoObjectId();
+      });
+      copyButton.addEventListener("click", () => {
+        selectMongoObjectId();
+        copyToClipboard();
+      });
+
       refreshMongoObjectId();
-    });
-    copyButton.addEventListener('click', () => {
-      selectMongoObjectId();
-      copyToClipboard();
-    });
-
-    refreshMongoObjectId();
-  </script>
-</body>
+    </script>
+  </body>
 </html>
