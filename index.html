@@ -4,11 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Random MongoDB ObjectId Generator</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Questrial&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body,
       main {
-        display: flex;
-        flex-direction: column;
+        align-self: flex-start;
+        display: grid;
+        grid-template-rows: 1fr 1fr auto;
         justify-content: center;
         align-items: center;
       }
@@ -16,35 +22,34 @@
         padding: 0;
         margin: 0;
         background-color: hsl(145, 83%, 36%);
-        font-family: sans-serif;
+        font-family: "Questrial", sans-serif;
         color: white;
         height: 100vh;
         text-align: center;
       }
       h1 {
+        align-self: flex-end;
         font-size: clamp(1rem, 3vw, 2rem);
         font-weight: normal;
         margin: 0;
       }
       button {
-        width: 3rem;
-        height: 3rem;
         background: transparent;
         border: none;
-        margin: 0 2rem;
+        margin: 0 1rem;
       }
       button:hover {
         cursor: pointer;
       }
       svg {
-        height: 100%;
-        width: 100%;
-      }
-      #refresh svg {
+        height: 2rem;
         fill: white;
       }
-      #copy svg {
-        stroke: white;
+      a {
+        color: white;
+      }
+      footer {
+        font-size: 0.75rem;
       }
       #random-mongodb-id-wrapper {
         display: grid;
@@ -69,10 +74,11 @@
         background-color: white;
         border-radius: 0.5rem;
         padding: 0.25rem 0.5rem;
-        margin: 2rem 0;
+        margin: 0;
         border: none;
         color: #116149;
         text-align: center;
+        margin: 1rem 0 0.5rem;
       }
       #random-mongodb-id:focus {
         outline: none;
@@ -110,30 +116,40 @@
       </div>
       <div>
         <button aria-label="copy" id="copy" autofocus>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="feather feather-copy"
-          >
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-            <path
-              d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-            ></path>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+            <g>
+              <path
+                d="M44.84,10.5H24.9a5,5,0,0,0-5,5V42.8a5,5,0,0,0,5,5H44.84a5,5,0,0,0,5-5V15.46A5,5,0,0,0,44.84,10.5Zm2,32.3a2,2,0,0,1-2,2H24.9a2,2,0,0,1-2-2V15.46a2,2,0,0,1,2-2H44.84a2,2,0,0,1,2,2Z"
+              />
+              <path
+                d="M39.07,50.5H19.18a2,2,0,0,1-2-2V21.23a1.5,1.5,0,0,0-3,0V48.51a5,5,0,0,0,5,5H39.07A1.5,1.5,0,0,0,39.07,50.5Z"
+              />
+            </g>
           </svg>
         </button>
         <button aria-label="refresh" id="refresh">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 56.32">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
             <path
-              d="M63.22,22.34a2.57,2.57,0,0,0-3.62.06l-3.39,3.52a28.13,28.13,0,1,0-7.94,21.95,2.56,2.56,0,0,0-3.66-3.58,23,23,0,1,1,6.47-18.45l-3.19-3.19a2.56,2.56,0,1,0-3.62,3.62L52,34a2.56,2.56,0,0,0,1.81.75h0a2.56,2.56,0,0,0,1.82-.79L63.28,26A2.57,2.57,0,0,0,63.22,22.34Z"
+              d="M39.75,22.28A1.5,1.5,0,0,0,41.05,24l9.58,1.19a1.56,1.56,0,0,0,1.28-.47,1.66,1.66,0,0,0,.3-.49h0a1.31,1.31,0,0,0,.09-.34l1.19-9.58a1.5,1.5,0,0,0-3-.37l-.64,5.21C37.4,2.29,10.63,11,10.5,32A21.81,21.81,0,0,0,53,38.79a1.5,1.5,0,0,0-2.85-.93A18.81,18.81,0,0,1,13.5,32c.16-18.73,24.38-25.79,34.6-10.2L41.42,21A1.5,1.5,0,0,0,39.75,22.28Z"
             />
           </svg>
         </button>
       </div>
     </main>
+    <footer>
+      <p>
+        <a
+          href="https://github.com/mauriciorobayo/random-mongodb-objectid-generator"
+        >
+          View on Github
+        </a>
+      </p>
+      <p>
+        Icons by
+        <a href="https://freeicons.io/profile/5790">ColourCreatype</a> on
+        <a href="https://freeicons.io">freeicons.io</a>
+      </p>
+    </footer>
     <script>
       const randomObjectIdWrapper = document.querySelector(
         "#random-mongodb-id-wrapper"
