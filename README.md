@@ -1,8 +1,6 @@
 # Random MongoDB ObjectId Generator
 
-A simple interface to get a random [MongoDB ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/).
-
-https://www.mauriciorobayo.com/random-mongodb-objectid-generator
+A [simple interface](https://www.mauriciorobayo.com/random-mongodb-objectid-generator) to get a random [MongoDB ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/).
 
 Random MongoDB ObjectId Generators:
 
