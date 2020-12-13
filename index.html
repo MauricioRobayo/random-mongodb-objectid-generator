@@ -31,7 +31,7 @@
         align-self: flex-end;
         font-size: clamp(1rem, 3vw, 2rem);
         font-weight: normal;
-        margin: 0;
+        margin: 0 0 1rem;
       }
       button {
         background: transparent;
@@ -42,29 +42,27 @@
         cursor: pointer;
       }
       svg {
-        height: 2rem;
+        height: 2.5rem;
         fill: white;
       }
       a {
         color: white;
       }
       footer {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
       }
-      #random-mongodb-id-wrapper {
+      .random-mongodb-id-wrapper {
         display: grid;
         justify-items: center;
         align-items: center;
         grid-template-areas: "overlap";
       }
-      #copy-label {
-        z-index: 1;
+      .copy-label {
         grid-area: overlap;
         background-color: black;
         padding: 0.25rem 0.5rem;
         border-radius: 0.5rem;
-        display: none;
-        animation: appear 0.75s, disappear 0.75s 1s forwards;
+        animation: flash 1.25s forwards;
       }
       #random-mongodb-id {
         grid-area: overlap;
@@ -74,25 +72,22 @@
         background-color: white;
         border-radius: 0.5rem;
         padding: 0.25rem 0.5rem;
-        margin: 0;
         border: none;
         color: #116149;
         text-align: center;
-        margin: 1rem 0 0.5rem;
+        margin: 0.5rem 0;
       }
       #random-mongodb-id:focus {
         outline: none;
       }
-      @keyframes appear {
+      @keyframes flash {
         0% {
           opacity: 0;
         }
-        100% {
+        20% {
           opacity: 1;
         }
-      }
-      @keyframes disappear {
-        0% {
+        40% {
           opacity: 1;
         }
         100% {
@@ -104,8 +99,7 @@
   <body>
     <h1>Random MongoDB ObjectId</h1>
     <main>
-      <div id="random-mongodb-id-wrapper">
-        <div id="copy-label">Copied!</div>
+      <div class="random-mongodb-id-wrapper">
         <input
           aria-label="Random MongoDB ObjectId Generator"
           placeholder="Random MongoDB ObjectId Generator"
@@ -138,10 +132,11 @@
     </main>
     <footer>
       <p>
+        View on
         <a
           href="https://github.com/mauriciorobayo/random-mongodb-objectid-generator"
         >
-          View on Github
+          Github
         </a>
       </p>
       <p>
@@ -152,14 +147,12 @@
     </footer>
     <script>
       const randomObjectIdWrapper = document.querySelector(
-        "#random-mongodb-id-wrapper"
+        ".random-mongodb-id-wrapper"
       );
       const mongoObjectIdInput = document.querySelector("#random-mongodb-id");
       const refreshButton = document.querySelector("#refresh");
       const copyButton = document.querySelector("#copy");
-      const copyLabel = document.querySelector("#copy-label");
 
-      // https://gist.github.com/solenoid/1372386
       const mongoObjectId = () => {
         const timestamp = Math.round(new Date().getTime() / 1000).toString(16);
         const randomHexString = Array.from({ length: 16 }, () =>
@@ -175,12 +168,14 @@
         );
       };
       const copyToClipboard = () => {
-        console.log(mongoObjectIdInput.value);
         navigator.clipboard.writeText(mongoObjectIdInput.value);
-        copyLabel.style.display = "block";
+        const copyLabel = document.createElement("div");
+        copyLabel.textContent = "Copied!";
+        copyLabel.classList.add("copy-label");
+        randomObjectIdWrapper.append(copyLabel);
         setTimeout(() => {
-          copyLabel.style.display = "none";
-        }, 1.75 * 1000);
+          copyLabel.remove();
+        }, 1.25 * 1000);
       };
       const refreshMongoObjectId = () =>
         (mongoObjectIdInput.value = mongoObjectId());
