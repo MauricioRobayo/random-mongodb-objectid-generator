@@ -2,7 +2,7 @@
 
 A [simple interface](https://www.mauriciorobayo.com/random-mongodb-objectid-generator) to get a random [MongoDB ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/).
 
-To get a random MongoDB ObjectId in you terminal, use the `[rmoid](https://github.com/MauricioRobayo/rmoid)` package:
+To get a random MongoDB ObjectId in you terminal, use the [`rmoid`](https://github.com/MauricioRobayo/rmoid) package:
 
 ```
 npx rmoid
